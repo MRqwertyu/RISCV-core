@@ -1,0 +1,16 @@
+// R-Type (add, sub) - Opcode 0x33
+// The 3rd bit from the right MUST be 0
+@33  10000010 
+
+// Load (lw)
+@03  11100100 
+// I-Type (addi)
+@13  10000100 
+// Store (sw)
+@23  00010100 
+// Branch (beq)
+@63  00001001 
+// JALR
+@67  10000111 
+// JAL
+@6f  10000111

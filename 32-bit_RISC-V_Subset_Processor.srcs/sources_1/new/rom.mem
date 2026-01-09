@@ -1,0 +1,23 @@
+// ROM Content
+// Format: {RegWrite, MemToReg, MemRead, MemWrite, Branch, ALUSrc, ALUOp[1:0]}
+
+// Load (lw) - Opcode 0x03
+@03  11100100 
+
+// I-Type (addi) - Opcode 0x13
+@13  10000100 
+
+// Store (sw) - Opcode 0x23
+@23  00010100 
+
+// R-Type (add, sub) - Opcode 0x33 <--- THIS IS THE ONE THAT WAS FAILING
+@33  10000010 
+
+// Branch (beq) - Opcode 0x63
+@63  00001001 
+
+// JALR - Opcode 0x67
+@67  10000111 
+
+// JAL - Opcode 0x6F
+@6f  10000111

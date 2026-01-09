@@ -1,0 +1,47 @@
+// --- Initialization ---
+// x1 = Outer Loop Counter (4 iterations)
+// x2 = Inner Loop Limit (2 iterations)
+// x3 = Inner Loop Counter
+// x4 = Scratchpad / Math Result
+
+// 00: addi x1, x0, 4    (Outer Limit = 4)
+00400093
+// 04: addi x2, x0, 2    (Inner Limit = 2)
+00200113
+// 08: addi x4, x0, 0    (Initialize Math Result = 0)
+00000213
+
+// --- Outer Loop Start (Label: OUTER) ---
+// 0C: beq x1, x0, 24    (If Outer Counter == 0, Exit to End/0x24)
+// Address 0x24 is offset +24 (0x18) from here -> Imm=24
+01808c63 
+
+// --- Inner Loop Preparation ---
+// 10: addi x3, x0, 0    (Reset Inner Counter x3 = 0)
+00000193
+
+// --- Inner Loop Start (Label: INNER) ---
+// 14: beq x3, x2, 8     (If x3 == 2, Exit Inner Loop. Jump to 0x1C)
+// Address 0x1C is offset +8 from here
+00218463 
+
+// 18: addi x4, x4, 1    (Math: Result++)
+00120213
+// 1C: addi x3, x3, 1    (Inner Counter++)
+00118193
+// 20: beq x0, x0, -12   (Unconditional Jump back to INNER at 0x14)
+// Address 0x14 is offset -12 (0xFFFFFFF4) from here -> Imm code specific
+fe000ae3
+
+// --- Outer Loop Decrement (Label: NEXT_OUTER) ---
+// 24: addi x1, x1, -1   (Outer Counter--)
+fff08093
+// 28: beq x0, x0, -28   (Unconditional Jump back to OUTER at 0x0C)
+// Address 0x0C is offset -28 from here
+fe000263
+
+// --- Program End (Label: END) ---
+// 2C: sw x4, 0(x0)      (Store Result: Should be 4 * 2 = 8)
+00402023
+// 30: beq x0, x0, 0     (Infinite Loop)
+00000063

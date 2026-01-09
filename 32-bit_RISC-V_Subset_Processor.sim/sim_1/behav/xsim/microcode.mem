@@ -1,0 +1,22 @@
+// Control Signals: {RegWrite, MemToReg, MemRead, MemWrite, Branch, ALUSrc, ALUOp[1:0]}
+
+// R-Type (add, sub) - Opcode 0x33
+@33  10000010 
+
+// I-Type (addi) - Opcode 0x13
+@13  10000100 
+
+// Load (lw) - Opcode 0x03
+@03  11100100 
+
+// Store (sw) - Opcode 0x23
+@23  00010100 
+
+// Branch (beq) - Opcode 0x63
+@63  00001001 
+
+// JALR - Opcode 0x67
+@67  10000111 
+
+// JAL - Opcode 0x6F
+@6f  10000111
